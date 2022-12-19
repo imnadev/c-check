@@ -6,7 +6,7 @@
 #define SIZE 4
 
 GtkWidget *main_window;
-GtkLabel *label;
+GtkWidget *label;
 
 int window_type;
 
@@ -33,7 +33,7 @@ void main_window_show(int type) {
         main_window = GTK_WIDGET(gtk_builder_get_object(builder, "server_window"));
     } else {
         main_window = GTK_WIDGET(gtk_builder_get_object(builder, "client_window"));
-        label = (GtkLabel *) gtk_builder_get_object(builder, "question");
+        label = GTK_WIDGET(gtk_builder_get_object(builder, "question"));
         next_question();
     }
     gtk_builder_connect_signals(builder, NULL);
@@ -71,11 +71,11 @@ void client_window_on_d_clicked() {
 }
 
 void next_question() {
-    if (question >= SIZE) {
+    if (question + 1 >= SIZE) {
         return;
     }
     question++;
-    gtk_label_set_text(label, questions[question]);
+    gtk_label_set_text(GTK_LABEL(label), questions[question]);
 }
 
 void on_window_main_destroy() {
