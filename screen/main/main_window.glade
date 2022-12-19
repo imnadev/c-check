@@ -42,6 +42,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <signal name="clicked" handler="client_window_on_a_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -55,6 +56,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <signal name="clicked" handler="client_window_on_b_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -68,6 +70,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <signal name="clicked" handler="client_window_on_c_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -81,6 +84,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <signal name="clicked" handler="client_window_on_d_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
