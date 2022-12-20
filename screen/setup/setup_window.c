@@ -4,6 +4,7 @@
 #include "../../socket/client/client.h"
 #include "../server/server_window.h"
 #include "../client/client_window.h"
+#include "../../struct/constants.h"
 
 GtkWidget *setup_window;
 char ip[16] = "127.0.0.1";

@@ -19,7 +19,7 @@ add_executable(CCheck
         screen/setup/setup_window.c screen/setup/setup_window.h
         screen/client/client_window.c screen/client/client_window.h
         socket/client/client.c socket/client/client.h
-        screen/server/server_window.c screen/server/server_window.h screen/result/result_window.c screen/result/result_window.h database/database.h database/database.c)
+        struct/constants.h screen/server/server_window.c screen/server/server_window.h screen/result/result_window.c screen/result/result_window.h database/database.h database/database.c)
 
 
 target_link_libraries(CCheck ${GTK3_LIBRARIES})

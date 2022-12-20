@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "../../struct/constants.h"
 
 int sock = 0;
 struct sockaddr_in serv_addr;

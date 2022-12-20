@@ -1,6 +1,7 @@
 #include "server.h"
 #include "../../database/database.h"
 #include "../../screen/server/server_window.h"
+#include "../../struct/constants.h"
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
