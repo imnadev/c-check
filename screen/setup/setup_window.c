@@ -8,7 +8,7 @@
 
 GtkWidget *setup_window;
 char ip[16] = "127.0.0.1";
-char name[100] = "imnadev";
+char name[100] = "";
 int port = 8877;
 
 void setup_window_show() {

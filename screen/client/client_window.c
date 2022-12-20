@@ -16,7 +16,7 @@ char questions[SIZE][1000] = {
         "4. Fourth question\nA. Answer A\nB. Answer B\nC. Answer C\nD. Answer D",
 };
 
-int answers[SIZE] = {0, 1, 4};
+int answers[SIZE] = {0, 1, 4, 2};
 
 int score = 0;
 

@@ -18,8 +18,8 @@ int client_listening = FALSE;
 _Noreturn void *listen_to_server(void *a) {
     while (client_listening) {
         memset(client_buffer, 0, sizeof(client_buffer));
-
         read(sock, client_buffer, 1024);
+        printf("%s", client_buffer);
     }
 }
 

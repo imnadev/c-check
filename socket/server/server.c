@@ -20,6 +20,10 @@ char buffer[1025];
 fd_set readfds;
 int listening = FALSE;
 
+/*
+ * Accepts incoming connections
+ * Handles disconnections and new score events
+ */
 _Noreturn void *listen_to_connections(void *a) {
     while (listening) {
         FD_ZERO(&readfds);
