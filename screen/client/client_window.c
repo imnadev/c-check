@@ -1,14 +1,13 @@
-#include "main_window.h"
+#include "client_window.h"
 #include <gtk/gtk.h>
 #include "../../socket/server/server.h"
 #include "../../socket/client/client.h"
+#include "../result/result_window.h"
 
 #define SIZE 4
 
-GtkWidget *main_window;
+GtkWidget *client_window;
 GtkWidget *label;
-
-int window_type;
 
 char questions[SIZE][1000] = {
         "1. First question\nA. Answer A\nB. Answer B\nC. Answer C\nD. Answer D",
@@ -23,23 +22,23 @@ int score = 0;
 
 int question = -1;
 
-void main_window_show(int type) {
+char *username;
 
-    window_type = type;
+void client_window_show(char *name) {
 
-    GtkBuilder *builder = gtk_builder_new_from_file("../screen/main/main_window.glade");
+    username = name;
 
-    if (type == SERVER_WINDOW) {
-        main_window = GTK_WIDGET(gtk_builder_get_object(builder, "server_window"));
-    } else {
-        main_window = GTK_WIDGET(gtk_builder_get_object(builder, "client_window"));
-        label = GTK_WIDGET(gtk_builder_get_object(builder, "question"));
-        next_question();
-    }
+    GtkBuilder *builder = gtk_builder_new_from_file("../screen/client/client_window.glade");
+
+    client_window = GTK_WIDGET(gtk_builder_get_object(builder, "client_window"));
+    label = GTK_WIDGET(gtk_builder_get_object(builder, "question"));
+
+    next_question();
+
     gtk_builder_connect_signals(builder, NULL);
 
     g_object_unref(builder);
-    gtk_widget_show(main_window);
+    gtk_widget_show((GtkWidget *) client_window);
 }
 
 void client_window_on_a_clicked() {
@@ -72,6 +71,9 @@ void client_window_on_d_clicked() {
 
 void next_question() {
     if (question + 1 >= SIZE) {
+        gtk_widget_hide((GtkWidget *) client_window);
+        result_window_show(score, SIZE);
+        client_send_result(username, score, SIZE);
         return;
     }
     question++;

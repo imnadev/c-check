@@ -1,11 +1,13 @@
 #include "setup_window.h"
 #include <gtk/gtk.h>
 #include "../../socket/server/server.h"
-#include "../main/main_window.h"
 #include "../../socket/client/client.h"
+#include "../server/server_window.h"
+#include "../client/client_window.h"
 
 GtkWidget *setup_window;
-char ip[16];
+char ip[16] = "127.0.0.1";
+char name[100] = "imnadev";
 int port = 8877;
 
 void setup_window_show() {
@@ -21,31 +23,36 @@ void setup_window_show() {
 
 void setup_window_on_serve_clicked() {
     if (server_init() == FAILURE) {
-        //TODO show error main_window
+        //TODO show error client_window
         gtk_main_quit();
     } else {
         gtk_widget_hide(setup_window);
-        main_window_show(SERVER_WINDOW);
+        server_window_show();
     }
 }
 
 void setup_window_on_connect_clicked() {
     if (client_init(ip, port) == FAILURE) {
-        //TODO show error main_window
+        //TODO show error client_window
         gtk_main_quit();
     } else {
         gtk_widget_hide(setup_window);
-        main_window_show(CLIENT_WINDOW);
+
+        client_window_show(name);
     }
 }
 
 void get_text(GtkEntry *e) {
-    sprintf(ip, gtk_entry_get_text(e));
+    sprintf(ip, "%s", gtk_entry_get_text(e));
+}
+
+void get_name(GtkEntry *e) {
+    sprintf(name, "%s", gtk_entry_get_text(e));
 }
 
 void get_port(GtkEntry *e) {
     char portChar[6];
-    sprintf(portChar, gtk_entry_get_text(e));
+    sprintf(portChar, "%s", gtk_entry_get_text(e));
     port = atoi(portChar);
 }
 

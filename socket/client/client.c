@@ -6,13 +6,13 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 int sock = 0;
 struct sockaddr_in serv_addr;
 char client_buffer[1024] = {0};
 
 int client_listening = FALSE;
-
 
 _Noreturn void *listen_to_server(void *a) {
     while (client_listening) {
@@ -45,8 +45,12 @@ int client_init(char *ip, int port) {
     return SUCCESS;
 }
 
-void client_get_question(int index) {
+void client_send_result(char *name, int score, int total) {
 
+    char message[100] = {0};
+    sprintf(message, "Name: %s\nScore: %d/%d\n\n", name, score, total);
+
+    send(sock, message, strlen(message), 0);
 }
 
 void client_stop() {

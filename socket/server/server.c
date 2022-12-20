@@ -1,4 +1,6 @@
 #include "server.h"
+#include "../../database/database.h"
+#include "../../screen/server/server_window.h"
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -37,7 +39,7 @@ _Noreturn void *listen_to_connections(void *a) {
                 continue;
             }
 
-            printf("New connection, socket fd is %d, ip is : %s, port : %d  \n",
+            printf("New connection, socket fd is %d, ip is %s, port is %d\n",
                    new_socket,
                    inet_ntoa((address).sin_addr),
                    ntohs((address).sin_port)
@@ -55,19 +57,20 @@ _Noreturn void *listen_to_connections(void *a) {
             sd = client_socket[i];
 
             if (FD_ISSET(sd, &readfds)) {
-                if ((valread = read(sd, buffer, 1024)) >= 0) {
+                if ((valread = read(sd, buffer, 1024)) == 0) {
+                    getpeername(sd, (struct sockaddr *) &address, \
+                        (socklen_t *) &addrlen);
+                    printf("Host disconnected, ip %s, port %d \n", inet_ntoa(address.sin_addr),
+                           ntohs(address.sin_port));
 
-                    int position = 1;
-
-                    char message[50] = {0};
-                    sprintf(message, "seek %d\r\n", position);
-
-                    if (send(sd, message, strlen(message), 0) != strlen(message)) {
-                        perror("send");
-                    }
-
+                    close(sd);
+                    client_socket[i] = 0;
+                } else {
+                    buffer[valread] = '\0';
+                    printf("%s", buffer);
+                    database_insert(buffer);
+                    server_window_refresh();
                 }
-
             }
         }
     }
