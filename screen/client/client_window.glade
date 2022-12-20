@@ -25,7 +25,7 @@
             <property name="valign">start</property>
             <property name="label" translatable="yes">label</property>
             <attributes>
-              <attribute name="font-desc" value="Microsoft Sans Serif 24"/>
+              <attribute name="font-desc" value="Microsoft Sans Serif 16"/>
             </attributes>
           </object>
           <packing>
