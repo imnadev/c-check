@@ -65,7 +65,7 @@ _Noreturn void *listen_to_connections(void *a) {
                 if ((valread = read(sd, buffer, 1024)) == 0) {
                     getpeername(sd, (struct sockaddr *) &address, \
                         (socklen_t *) &addrlen);
-                    printf("Host disconnected, ip %s, port %d \n", inet_ntoa(address.sin_addr),
+                    printf("Host disconnected, IP %s, port %d \n", inet_ntoa(address.sin_addr),
                            ntohs(address.sin_port));
 
                     close(sd);
