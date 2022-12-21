@@ -4,19 +4,62 @@
 #include "../../socket/client/client.h"
 #include "../result/result_window.h"
 
-#define SIZE 4
+#define SIZE 5
 
 GtkWidget *client_window;
 GtkWidget *label;
 
 char questions[SIZE][1000] = {
-        "1. First question\nA. Answer A\nB. Answer B\nC. Answer C\nD. Answer D",
-        "2. Second question\nA. Answer A\nB. Answer B\nC. Answer C\nD. Answer D",
-        "3. Third question\nA. Answer A\nB. Answer B\nC. Answer C\nD. Answer D",
-        "4. Fourth question\nA. Answer A\nB. Answer B\nC. Answer C\nD. Answer D",
+        "1. Which of the following statement is correct?\nA. strcmp(s1, s2) returns a number less than 0 if s1>s2
+ \nB. strcmp(s1, s2) returns a number greater than 0 if s1<s2
+ \nC. strcmp(s1, s2) returns 0 if s1==s2
+ \nD. strcmp(s1, s2) returns 1 if s1==s2",
+        "2. Which of the following function sets first n characters of a string to a given character?\nA. strinit()
+\nB. strnset()
+\nC. strset()
+\nD. strcset()",
+        "3. #include<stdio.h>
+
+int main()
+{
+    int a[3][4] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+    printf("%u, %u, %u\n", a[0]+1, *(a[0]+1), *(*(a+0)+1));
+    return 0;
+}\nA. 448, 4, 4
+\nB. 520, 2, 2
+\nC. 1006, 2, 2
+\nD. Error",
+        "4. #include<stdio.h>
+
+int main()
+{
+    struct value
+    {
+        int bit1:1;
+        int bit3:4;
+        int bit4:4;
+    }bit;
+    printf("%d\n", sizeof(bit));
+    return 0;
+}\nA. 1\nB. 2\nC. 4\nD. 9",
+  "5.	
+What will be the output of the program? \n#include<stdio.h>
+
+int main()
+{
+    typedef int arr[5];
+    arr iarr = {1, 2, 3, 4, 5};
+    int i;
+    for(i=0; i<4; i++)
+        printf("%d,", iarr[i]);
+    return 0;
+}\nA. 1, 2, 3, 4
+ \nB. 1, 2, 3, 4, 5
+ \nC. No output
+ \nD. Error: Cannot use typedef with an array"
 };
 
-int answers[SIZE] = {0, 1, 4, 2};
+int answers[SIZE] = {3, 2, 3, 2, 1};
 
 int score = 0;
 

@@ -28,7 +28,7 @@ void setup_window_on_serve_clicked() {
         gtk_main_quit();
     } else {
         gtk_widget_hide(setup_window);
-        server_window_show();
+        server_window_show();   
     }
 }
 
